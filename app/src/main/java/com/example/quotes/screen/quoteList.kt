@@ -27,22 +27,26 @@ import com.example.quotes.Quotes
 import com.example.quotes.R
 
 @Composable
-fun Quote_List(quotes: Quotes,) {
+fun QuoteList(quotes: Quotes, onClick: (quotes: Quotes) -> Unit)  {
 
         Card(
+
             colors = CardDefaults.cardColors(
                 containerColor = colorResource(id = R.color.light_red),
             ),
             modifier = Modifier
                 .padding(5.dp, top = 25.dp)
                 .fillMaxWidth()
-                .clickable {  },
+                .clickable { onClick
+                           },
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 10.dp
             ),
+
             shape = RectangleShape
         ) {
             Column(Modifier.padding(8.dp)) {
+
                 Icon(    modifier =  Modifier
                     .rotate(180F)
                     .size(30.dp),
@@ -64,6 +68,7 @@ fun Quote_List(quotes: Quotes,) {
                     color = colorResource(id = R.color.orange),
                     thickness = 6.dp,
                 )
+
                 Spacer(modifier = Modifier.height(5.dp))
 
                 Text(

@@ -31,13 +31,13 @@ fun app() {
 
     if(DataManager.isDataLoaded.value) {
 
-        if(DataManager.initial.value == DataManager.Page.List){
+        if(DataManager.initialState.value == DataManager.Page.List){
             HomeScreen(data = DataManager.Data,) {
             }
         }
     }
 
     else{
-        
+
     }
 }

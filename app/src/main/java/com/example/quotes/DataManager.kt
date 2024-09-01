@@ -12,7 +12,7 @@ object DataManager {
     var Data = emptyArray<Quotes>()
     var isDataLoaded = mutableStateOf(false)
     var currentquote : Quotes? = null
-    var initial = mutableStateOf(Page.List)
+    var initialState = mutableStateOf(Page.List)
 
     fun loadAllData(context: Context) {
 
@@ -33,15 +33,14 @@ object DataManager {
         }
     }
 
-    enum class Page {
-                    List, Detail }
+    enum class Page { List, Detail }
 
-    fun switchpages() {
-        if (initial.value == Page.List) {
-            initial.value = Page.Detail
+    fun SwitchPages() {
+        if (initialState.value == Page.List) {
+            initialState.value = Page.Detail
         }
         else {
-            initial.value = Page.List
+            initialState.value = Page.List
         }
     }
 }

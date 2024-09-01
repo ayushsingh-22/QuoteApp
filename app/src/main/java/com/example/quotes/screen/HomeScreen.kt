@@ -24,7 +24,7 @@ import com.example.quotes.R
 
 
 @Composable
-fun HomeScreen(data: Array<Quotes>, onClick:(quotes: Quotes) -> Unit) {
+fun HomeScreen(data: Array<Quotes>, onClick: (quotes: Quotes) -> Unit) {
 
     Box(
         modifier = Modifier
@@ -53,17 +53,16 @@ fun HomeScreen(data: Array<Quotes>, onClick:(quotes: Quotes) -> Unit) {
                     color = Color.Black,
                     fontSize = 50.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    textAlign = TextAlign.Justify
+                    textAlign = TextAlign.Center
                 )
             )
 
             LazyColumn(content = {
-                items(data){
-                    Quote_List(quotes = it)
-            }
+                items(data) { quote ->
+                    QuoteList(quotes = quote, onClick)
+                }
             })
         }
     }
 }
-
 
