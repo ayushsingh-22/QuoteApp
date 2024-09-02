@@ -1,5 +1,7 @@
 package com.example.quotes.screen
 
+import android.content.Intent
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,10 +13,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FormatQuote
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,17 +26,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.quotes.DataManager
 import com.example.quotes.Quotes
 import com.example.quotes.R
 
 
 @Composable
-fun QuoteScreen(quotes: Quotes) {
+fun QuoteScreen(quotes: Quotes?) {
+
+    val context = LocalContext.current
+
+    BackHandler { DataManager.SwitchPages(null) }
 
     Box(
         modifier = Modifier
@@ -69,11 +78,13 @@ fun QuoteScreen(quotes: Quotes) {
                         .size(80.dp),
                 )
 
-                Text(
-                    text = quotes.quote,
-                    fontSize = 25.sp,
-                    fontWeight = FontWeight.Normal,
-                )
+                if (quotes != null) {
+                    Text(
+                        text = quotes.quote,
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Normal,
+                    )
+                }
 
                 HorizontalDivider(
                     modifier = Modifier.height(10.dp),
@@ -82,12 +93,30 @@ fun QuoteScreen(quotes: Quotes) {
                 )
                 Spacer(modifier = Modifier.height(5.dp))
 
-                Text(
-                    text = quotes.author,
-                    fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold,
-                )
+                quotes?.let {
+                    Text(
+                        text = it.author,
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
 
+                // Share Button
+                IconButton(
+                    onClick = {
+                        quotes?.let {
+                            val shareIntent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(Intent.EXTRA_TEXT, "${it.quote} - ${it.author}")
+                                type = "text/plain"
+                            }
+                            context.startActivity(Intent.createChooser(shareIntent, "Share via"))
+                        }
+                    },
+                    modifier = Modifier.align(Alignment.End)
+                ) {
+                    Icon(imageVector = Icons.Default.Share, contentDescription = "Share Icon")
+                }
             }
         }
     }

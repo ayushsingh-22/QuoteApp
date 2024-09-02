@@ -37,7 +37,7 @@ fun QuoteList(quotes: Quotes, onClick: (quotes: Quotes) -> Unit)  {
             modifier = Modifier
                 .padding(5.dp, top = 25.dp)
                 .fillMaxWidth()
-                .clickable { onClick
+                .clickable { onClick(quotes)
                            },
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 10.dp

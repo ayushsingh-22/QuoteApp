@@ -35,8 +35,9 @@ object DataManager {
 
     enum class Page { List, Detail }
 
-    fun SwitchPages() {
+    fun SwitchPages(quote: Quotes?) {
         if (initialState.value == Page.List) {
+            currentquote = quote
             initialState.value = Page.Detail
         }
         else {
