@@ -9,9 +9,9 @@ import java.io.IOException
 
 object DataManager {
 
-    var Data = emptyArray<Quotes>()
+    var Data = emptyArray<quoteData>()
     var isDataLoaded = mutableStateOf(false)
-    var currentquote : Quotes? = null
+    var currentquote : quoteData? = null
     var initialState = mutableStateOf(Page.List)
 
     fun loadAllData(context: Context) {
@@ -20,11 +20,12 @@ object DataManager {
             val input = context.assets.open("quotes.json")
             val size = input.available()
             val buffer = ByteArray(size)
+
             input.read(buffer)
             input.close()
             val json = String(buffer, Charsets.UTF_8)
             val gson = Gson()
-            Data = gson.fromJson(json, Array<Quotes>::class.java)
+            Data = gson.fromJson(json, Array<quoteData>::class.java)
             isDataLoaded.value = true
         }
 
@@ -35,7 +36,7 @@ object DataManager {
 
     enum class Page { List, Detail }
 
-    fun SwitchPages(quote: Quotes?) {
+    fun SwitchPages(quote: quoteData?) {
         if (initialState.value == Page.List) {
             currentquote = quote
             initialState.value = Page.Detail

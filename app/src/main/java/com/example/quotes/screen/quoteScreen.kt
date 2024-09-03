@@ -32,12 +32,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.quotes.DataManager
-import com.example.quotes.Quotes
 import com.example.quotes.R
+import com.example.quotes.quoteData
 
 
 @Composable
-fun QuoteScreen(quotes: Quotes?) {
+fun QuoteScreen(quoteData: quoteData?) {
 
     val context = LocalContext.current
 
@@ -78,9 +78,9 @@ fun QuoteScreen(quotes: Quotes?) {
                         .size(80.dp),
                 )
 
-                if (quotes != null) {
+                if (quoteData != null) {
                     Text(
-                        text = quotes.quote,
+                        text = quoteData.quote,
                         fontSize = 25.sp,
                         fontWeight = FontWeight.Normal,
                     )
@@ -93,7 +93,7 @@ fun QuoteScreen(quotes: Quotes?) {
                 )
                 Spacer(modifier = Modifier.height(5.dp))
 
-                quotes?.let {
+                quoteData?.let {
                     Text(
                         text = it.author,
                         fontSize = 25.sp,
@@ -104,7 +104,7 @@ fun QuoteScreen(quotes: Quotes?) {
                 // Share Button
                 IconButton(
                     onClick = {
-                        quotes?.let {
+                        quoteData?.let {
                             val shareIntent = Intent().apply {
                                 action = Intent.ACTION_SEND
                                 putExtra(Intent.EXTRA_TEXT, "${it.quote} - ${it.author}")

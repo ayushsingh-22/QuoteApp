@@ -42,7 +42,7 @@ fun app() {
         }
         else {
             DataManager.currentquote?.let { quotes ->
-                QuoteScreen(quotes = quotes)
+                QuoteScreen(quoteData = quotes)
             }
         }
     }

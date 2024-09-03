@@ -19,12 +19,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.quotes.Quotes
 import com.example.quotes.R
+import com.example.quotes.quoteData
 
 
 @Composable
-fun HomeScreen(data: Array<Quotes>, onClick: (quotes: Quotes) -> Unit) {
+fun HomeScreen(data: Array<quoteData>, onClick: (quoteData: quoteData) -> Unit) {
 
     Box(
         modifier = Modifier
@@ -59,7 +59,7 @@ fun HomeScreen(data: Array<Quotes>, onClick: (quotes: Quotes) -> Unit) {
 
             LazyColumn(content = {
                 items(data) { quote ->
-                    QuoteList(quotes = quote, onClick)
+                    QuoteList(quoteData = quote, onClick)
                 }
             })
         }

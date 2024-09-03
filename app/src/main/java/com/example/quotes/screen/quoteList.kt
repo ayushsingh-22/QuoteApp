@@ -23,11 +23,11 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.quotes.Quotes
 import com.example.quotes.R
+import com.example.quotes.quoteData
 
 @Composable
-fun QuoteList(quotes: Quotes, onClick: (quotes: Quotes) -> Unit)  {
+fun QuoteList(quoteData: quoteData, onClick: (quoteData: quoteData) -> Unit)  {
 
         Card(
 
@@ -37,7 +37,7 @@ fun QuoteList(quotes: Quotes, onClick: (quotes: Quotes) -> Unit)  {
             modifier = Modifier
                 .padding(5.dp, top = 25.dp)
                 .fillMaxWidth()
-                .clickable { onClick(quotes)
+                .clickable { onClick(quoteData)
                            },
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 10.dp
@@ -57,7 +57,7 @@ fun QuoteList(quotes: Quotes, onClick: (quotes: Quotes) -> Unit)  {
                 )
 
                 Text(
-                    text = quotes.quote,
+                    text = quoteData.quote,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Normal,
                     color  = colorResource(id = R.color.black)
@@ -72,7 +72,7 @@ fun QuoteList(quotes: Quotes, onClick: (quotes: Quotes) -> Unit)  {
                 Spacer(modifier = Modifier.height(5.dp))
 
                 Text(
-                    text = quotes.author,
+                    text = quoteData.author,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color  = colorResource(id = R.color.black)
