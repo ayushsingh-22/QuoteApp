@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -72,8 +73,9 @@ fun QuoteScreen(quoteData: quoteData?) {
             Column(Modifier.padding(15.dp)) {
                 Icon(
                     imageVector = Icons.Default.FormatQuote,
+                    tint = Color.Black,
                     contentDescription = "Quote Icon",
-                    Modifier
+                    modifier = Modifier
                         .rotate(180F)
                         .size(80.dp),
                 )
@@ -83,6 +85,7 @@ fun QuoteScreen(quoteData: quoteData?) {
                         text = quoteData.quote,
                         fontSize = 25.sp,
                         fontWeight = FontWeight.Normal,
+                        color = Color.Black
                     )
                 }
 
@@ -98,10 +101,10 @@ fun QuoteScreen(quoteData: quoteData?) {
                         text = it.author,
                         fontSize = 25.sp,
                         fontWeight = FontWeight.Bold,
+                        color = Color.Black
                     )
                 }
 
-                // Share Button
                 IconButton(
                     onClick = {
                         quoteData?.let {
@@ -115,7 +118,9 @@ fun QuoteScreen(quoteData: quoteData?) {
                     },
                     modifier = Modifier.align(Alignment.End)
                 ) {
-                    Icon(imageVector = Icons.Default.Share, contentDescription = "Share Icon")
+                    Icon(imageVector = Icons.Default.Share,
+                        tint = Color.Black,
+                        contentDescription = "Share Icon")
                 }
             }
         }

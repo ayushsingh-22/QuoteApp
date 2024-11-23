@@ -45,7 +45,7 @@ fun HomeScreen(data: Array<quoteData>, onClick: (quoteData: quoteData) -> Unit) 
                 .fillMaxSize()
         ) {
             Text(
-                text = "Quotes App",
+                text = "Quotes",
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(top = 20.dp, start = 12.dp),
